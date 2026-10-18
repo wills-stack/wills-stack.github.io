@@ -269,7 +269,9 @@
         var img = safeUrl(c.image);
         return h("article", { class: "card cert" },
           img
-            ? h("img", { class: "cert__image", src: img, alt: c.imageAlt || "", loading: "lazy", decoding: "async" })
+            ? h("a", { class: "cert__zoom", href: img, target: "_blank", rel: "noopener noreferrer" },
+                h("img", { class: "cert__image", src: img, alt: c.imageAlt || "", width: "1600", height: "1131", loading: "lazy", decoding: "async" }),
+                h("span", { class: "visually-hidden", text: "Open the certificate image full size (opens in a new tab)" }))
             : h("div", { class: "cert__image cert__image--empty", "aria-hidden": "true" },
                 h("svg", { viewBox: "0 0 24 24", width: "28", height: "28" }, [
                   s("rect", { x: 3.5, y: 4.5, width: 17, height: 15, rx: 2, fill: "none", stroke: "currentColor", "stroke-width": 1.5 }),

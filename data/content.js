@@ -30,7 +30,7 @@ window.SITE = {
     ],
     // Put your photo in assets/img/ and write its path here, e.g. "assets/img/william.jpg".
     // Use a portrait photo (about 4:5). Leave "" to show the placeholder.
-    photo: "",
+    photo: "assets/img/william.webp",
     photoAlt: "Portrait of William Kurniawan Tan",
     // The four words on the connected-flow graphic next to your photo.
     flow: ["Business", "Process", "Data", "Technology"],
@@ -40,7 +40,7 @@ window.SITE = {
   about: {
     title: "About",
     lead: "How I think about business and technology.",
-    text: "I am an Information Systems undergraduate at BINUS University with a strong interest in ERP, business processes, and business technology. I enjoy exploring how technology can improve business operations and create effective solutions. My experiences as a Laboratory Assistant, Mentor, Tutor, and student organization member, including coordinating school programs, have strengthened my communication, leadership, teamwork, and problem-solving skills.",
+    text: "I am an Information Systems undergraduate at BINUS University with a strong interest in ERP, business processes, and business technology. I enjoy exploring how technology can improve business operations and create effective solutions. My experiences in business functional and sales work at a workshop, and as a student organization member coordinating school programs, have strengthened my communication, leadership, teamwork, and problem-solving skills.",
     interestsTitle: "Professional interests",
     interests: [
       "Enterprise Resource Planning (ERP)",
@@ -77,8 +77,8 @@ window.SITE = {
       {
         visible: true,
         role: "Business Functional & Sales",
-        organization: "Auto repair workshop (bengkel)", // write the workshop name here when you want it shown
-        period: "", // e.g. "Jun 2025 – Aug 2025"; "" hides it
+        organization: "Istana Motor",
+        period: "Feb 2024 \u2013 Jan 2025", // "" hides the period
         bullets: [
           "Connected customer needs with the workshop’s daily work flow.",
           "Sold services and spare parts and recommended options that fit what customers needed.",
@@ -97,12 +97,6 @@ window.SITE = {
           "Built communication, teamwork, and leadership skills while managing responsibilities across a team.",
         ],
       },
-
-      /* Your About text mentions these three roles, but I have no details for them yet.
-         They are hidden. Fill in the organization, period and bullets, then set visible: true. */
-      { visible: false, role: "Laboratory Assistant", organization: "", period: "", bullets: [] },
-      { visible: false, role: "Mentor", organization: "", period: "", bullets: [] },
-      { visible: false, role: "Tutor", organization: "", period: "", bullets: [] },
     ],
   },
 
@@ -175,8 +169,8 @@ window.SITE = {
         title: "Market Research & Business Communication (V2), CEFR C2.2",
         date: "Jul 2026",
         description: "English certification at CEFR C2.2 level for the Market Research & Business Communication module.",
-        image: "", // e.g. "assets/img/certificates/beelingua-c22.jpg"
-        imageAlt: "Certificate for Market Research & Business Communication, CEFR C2.2",
+        image: "assets/img/certificates/beelingua-c22.webp", // "" shows an empty placeholder
+        imageAlt: "Beelingua verified certificate for Market Research & Business Communication, CEFR C2.2, issued July 2026",
       },
       {
         visible: true,
@@ -185,8 +179,8 @@ window.SITE = {
         title: "Advanced English (V2), CEFR C2.1",
         date: "Jul 2026",
         description: "English certification at CEFR C2.1 level for the Advanced English module.",
-        image: "",
-        imageAlt: "Certificate for Advanced English, CEFR C2.1",
+        image: "assets/img/certificates/beelingua-c21.webp",
+        imageAlt: "Beelingua verified certificate for Advanced English, CEFR C2.1, issued July 2026",
       },
       {
         visible: true,
@@ -195,8 +189,18 @@ window.SITE = {
         title: "The AI Revolution: Technological Frontiers and Redefining Learning in Higher Education",
         date: "27 Apr 2026",
         description: "International seminar held at BINUS @ Alam Sutera, a collaboration between Institut Français d’Indonésie and Université Paris-Saclay.",
-        image: "",
-        imageAlt: "Participation certificate for the seminar The AI Revolution",
+        image: "assets/img/certificates/seminar-paris-saclay.webp",
+        imageAlt: "Certificate of participation for the seminar The AI Revolution, 27 April 2026",
+      },
+      {
+        visible: true,
+        kind: "Seminar",
+        institution: "HIMSISFO BINUS",
+        title: "DIG IN HIMSISFO 2025: FUSION, \u201cAI On Stage: The Digital Revolution Behind the Entertainment Industry\u201d",
+        date: "", // add the date here if you want it shown
+        description: "Participant in the seminar\u2013talkshow themed \u201cAI as the Game Changer: How Intelligent Systems Are Reshaping Industries\u201d, held by HIMSISFO.",
+        image: "assets/img/certificates/dig-in-seminar-talkshow.webp",
+        imageAlt: "Certificate of participation for the DIG IN HIMSISFO 2025 FUSION seminar-talkshow",
       },
       {
         visible: true,
