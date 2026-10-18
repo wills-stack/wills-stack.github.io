@@ -107,11 +107,11 @@
       h("div", { class: "hero__copy" },
         h("p", { class: "eyebrow", text: d.eyebrow }),
         h("h1", { class: "hero__title", id: "hero-title", text: d.title }),
-        h("p", { class: "hero__text", text: d.text }),
+        d.text ? h("p", { class: "hero__text", text: d.text }) : null,
         h("div", { class: "hero__actions" },
           a && safeUrl(a.href) ? h("a", { class: "button button--light", href: safeUrl(a.href), text: a.label }) : null,
           b && safeUrl(b.href) ? h("a", { class: "button button--outline", href: safeUrl(b.href), text: b.label }) : null),
-        tags(d.tags, "tag-list--dark")
+        d.tags && d.tags.length ? tags(d.tags, "tag-list--dark") : null
       ),
       h("div", { class: "hero__visual" }, flowGraphic(d.flow), portrait(d))
     ));
@@ -133,7 +133,7 @@
           facts.length ? h("div", null,
             h("h3", { class: "subhead", text: "Education" }),
             h("dl", { class: "facts" }, facts.map(function (f) {
-              return h("div", { class: "facts__row" }, h("dt", { text: f.label }), h("dd", { text: f.value }));
+              return h("div", { class: "facts__row" + (f.highlight ? " facts__row--hl" : "") }, h("dt", { text: f.label }), h("dd", { text: f.value }));
             }))) : null
         )
       )

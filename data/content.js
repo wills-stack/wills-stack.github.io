@@ -20,14 +20,10 @@ window.SITE = {
   hero: {
     eyebrow: "INFORMATION SYSTEMS UNDERGRADUATE",
     title: "Bridging Business & Technology.",
-    text: "I’m an Information Systems undergraduate at BINUS University with a strong interest in ERP, business processes, and technology-driven business solutions.",
+    text: "", // optional extra line under the title; "" keeps the hero clean
     primaryButton: { label: "Explore My Work", href: "#projects" },
     secondaryButton: { label: "Let’s Connect", href: "#contact" },
-    tags: [
-      "ERP & Business Technology",
-      "Business Process Management",
-      "Information Systems",
-    ],
+    tags: [], // optional chips under the buttons; empty list hides them
     // Put your photo in assets/img/ and write its path here, e.g. "assets/img/william.jpg".
     // Use a portrait photo (about 4:5). Leave "" to show the placeholder.
     photo: "assets/img/william.webp",
@@ -52,7 +48,7 @@ window.SITE = {
     facts: [
       { label: "University", value: "BINUS University" },
       { label: "Program", value: "Information Systems" },
-      { label: "GPA", value: "3.77 / 4.00" }, // set value to "" to hide a row
+      { label: "GPA", value: "3.85 / 4.00", highlight: true }, // set value to "" to hide a row
     ],
   },
 
