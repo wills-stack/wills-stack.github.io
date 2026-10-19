@@ -49,8 +49,10 @@
   function visible(list) { return (list || []).filter(function (x) { return x && x.visible !== false; }); }
   function mount(id, nodes) { var el = document.getElementById(id); if (el) { el.textContent = ""; append(el, nodes); } return el; }
 
+  var SECTION_NUM = { about: "01", skills: "02", experience: "03", projects: "04", certifications: "05" };
   function sectionHead(id, title, lead) {
     return h("div", { class: "section__head" },
+      SECTION_NUM[id] ? h("span", { class: "section__ghost", "aria-hidden": "true", text: SECTION_NUM[id] }) : null,
       h("h2", { class: "section__title", id: id + "-title", text: title }),
       lead ? h("p", { class: "section__lead", text: lead }) : null
     );
@@ -63,6 +65,26 @@
   }
 
   /* ---------- hero ---------- */
+
+  // decorative ring that slowly turns around the portrait (no text)
+  // style "dial" = fine tick marks + one dark arc, "dots" = dashed ring + small orbiting dots
+  function orbit(style) {
+    if (!style) return null;
+    var kids = [];
+    if (style === "dots") {
+      kids.push(s("circle", { cx: 200, cy: 200, r: 186, class: "orb orb--dash" }));
+      [[-60, 6], [48, 9], [160, 5], [250, 7]].forEach(function (d) {
+        var a = d[0] * Math.PI / 180;
+        kids.push(s("circle", { cx: 200 + 186 * Math.cos(a), cy: 200 + 186 * Math.sin(a), r: d[1], class: d[1] === 9 ? "orb orb--hollow" : "orb orb--dot" }));
+      });
+    } else {
+      kids.push(s("circle", { cx: 200, cy: 200, r: 186, class: "orb orb--ticks" }));
+      kids.push(s("circle", { cx: 200, cy: 200, r: 186, class: "orb orb--arc" }));
+    }
+    var svg = s("svg", { viewBox: "0 0 400 400", "aria-hidden": "true", focusable: "false" });
+    kids.forEach(function (k) { svg.appendChild(k); });
+    return h("div", { class: "hero__orbit", "aria-hidden": "true" }, svg);
+  }
 
   function heroStage(hero) {
     var src = safeUrl(hero.photo);
@@ -80,6 +102,7 @@
     }
     return h("div", { class: "hero__stage" },
       h("div", { class: "hero__ring hero__ring--b", "aria-hidden": "true" }),
+      orbit(hero.orbitStyle),
       h("div", { class: "hero__ring hero__ring--a", "aria-hidden": "true" }),
       h("div", { class: "hero__disc", "aria-hidden": "true" }),
       inner);
@@ -151,14 +174,14 @@
     var d = S.experience;
     mount("experience", h("div", { class: "container section__grid" },
       sectionHead("experience", d.title, d.lead),
-      h("div", { class: "section__body stack" }, visible(d.items).map(function (x) {
+      h("div", { class: "section__body timeline" }, visible(d.items).map(function (x) {
         var meta = [x.organization, x.period].filter(Boolean);
-        return h("article", { class: "card exp" },
+        return h("div", { class: "tl__item" }, h("article", { class: "card exp" },
           h("h3", { class: "card__title", text: x.role }),
           meta.length ? h("p", { class: "card__meta" },
             x.organization ? h("span", { text: x.organization }) : null,
             x.period ? h("span", { class: "card__period", text: x.period }) : null) : null,
-          x.bullets && x.bullets.length ? bullets(x.bullets) : null);
+          x.bullets && x.bullets.length ? bullets(x.bullets) : null));
       }))
     ));
   }
@@ -290,6 +313,7 @@
 
     mount("contact", h("div", { class: "container contact__grid" },
       h("div", null,
+        h("p", { class: "section__num section__num--contact", "aria-hidden": "true", text: "06" }),
         h("h2", { class: "contact__title", id: "contact-title", text: d.title }),
         h("p", { class: "contact__text", text: d.text }),
         S.cvPath ? h("a", { class: "button button--light", href: safeUrl(S.cvPath), download: "", text: "Download CV" }) : null),

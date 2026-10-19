@@ -28,6 +28,8 @@ window.SITE = {
     // Use a transparent-background cut-out (PNG/WebP) of you, waist up. Leave "" to show the placeholder.
     photo: "assets/img/william-cutout.webp",
     photoAlt: "Portrait of William Kurniawan Tan",
+    // Optional spinning ring around your photo: "dial", "dots", or "" for none.
+    orbitStyle: "",
     // The four dots shown at the top of the hero.
     flow: ["Business", "Process", "Data", "Technology"],
   },

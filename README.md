@@ -10,7 +10,7 @@ data/content.js       SEMUA ISI WEBSITE: edit file ini saja
 css/styles.css        warna, font, dan tampilan (variabel warna ada di bagian paling atas)
 js/main.js            logika halaman (tidak perlu diubah)
 assets/cv/            file CV (PDF)
-assets/fonts/         font Montserrat
+assets/fonts/         font Montserrat dan Poppins
 assets/img/projects/  gambar project
 assets/img/certificates/  taruh gambar sertifikat di sini
 ```
@@ -23,13 +23,14 @@ Buka `data/content.js`. Di dalamnya ada komentar yang menjelaskan tiap bagian.
 | --- | --- |
 | Foto profil | Pakai foto potongan (background transparan, setengah badan) berformat PNG atau WebP. Taruh di `assets/img/`, lalu isi `hero.photo: "assets/img/foto-saya.webp"` |
 | Empat titik di atas hero | Ubah `hero.flow` di `data/content.js` |
+| Cincin berputar di sekitar foto (opsional) | `hero.orbitStyle` di `data/content.js`: `""` (tanpa, default), `"dial"` atau `"dots"` |
 | Experience baru | Salin satu blok `{ ... },` di `experience.items`, tempel di bawahnya, lalu edit. Untuk menyembunyikan, ganti `visible: true` jadi `false` |
 | Gambar sertifikat | Taruh di `assets/img/certificates/`, isi `image: "assets/img/certificates/nama.webp"` (JPG dan PNG juga bisa) |
 | Link Figma Hampiness | Isi `href` di bagian `links` project Hampiness. Selama kosong, tombolnya tersembunyi |
 | Link GitHub | Isi `contact.github`. Selama kosong, linknya tersembunyi |
 | CV baru | Timpa file `assets/cv/William_Kurniawan_Tan_CV.pdf` dengan nama yang sama |
 | Project baru | Salin satu blok `{ ... },` di `projects.items`, tempel di bawahnya, lalu edit |
-| Warna atau font | Ubah nilai di blok `:root` paling atas `css/styles.css` |
+| Warna atau font | Ubah nilai di blok `:root` paling atas `css/styles.css` (palet abu-abu: graphite, steel, silver) |
 
 Setelah mengedit, buka `index.html` di browser untuk melihat hasilnya. Tidak perlu server.
 
@@ -72,5 +73,5 @@ Di **Settings**, **Pages**, isi **Custom domain**, lalu atur DNS di tempat kamu 
 
 ## Catatan
 
-- Font Montserrat sudah ada di folder `assets/fonts/`, jadi tidak perlu internet untuk memuatnya.
+- Font Montserrat (judul) dan Poppins (teks isi) sudah ada di folder `assets/fonts/`, jadi tidak perlu internet untuk memuatnya.
 - Gambar project sudah dikecilkan (format WebP). Kalau menambah gambar sendiri, usahakan di bawah 300 KB per gambar supaya website cepat.
