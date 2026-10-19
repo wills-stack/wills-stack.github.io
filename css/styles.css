@@ -512,21 +512,11 @@ h1, h2, h3, .eyebrow, .button, .nav__brand, .nav__list a, .hero__dots li, .foote
 .orb--dot { fill: #15171a; }
 .orb--hollow { fill: #eceded; stroke: #15171a; stroke-width: 2.5; }
 
-/* ---------- cover: light left, dark slanted panel right, photo standing in front ---------- */
+/* ---------- cover: light background, big dark circle, photo popping out of it ---------- */
 .divider { height: 6px; background: #15171a; }
-.hero { padding-bottom: 0 !important; }
-.hero::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 46%; z-index: 0; pointer-events: none;
-  background: linear-gradient(160deg, #3b3f45 0%, #16181b 55%, #0d0e10 100%);
-  clip-path: polygon(58% 0, 100% 0, 100% 100%, 0 100%); }
-.hero__grid, .hero__dots { position: relative; z-index: 1; }
-.hero__disc { display: none; }
-.hero__clip { border-radius: 0; width: calc(var(--D) * 1.05); }
-.hero__ring { border-color: rgba(255, 255, 255, 0.22); }
-.hero__ring--a { bottom: -28px; }
-.hero__ring--b { bottom: -65px; border-color: rgba(255, 255, 255, 0.1); }
-.hero__stage { justify-self: end; align-self: end; margin-bottom: 0; }
-@media (max-width: 860px) {
-  .hero::after { top: auto; left: 0; width: 100%; height: calc(min(74vw, 430px) * 1.32 + 1.5rem);
-    clip-path: polygon(0 14%, 100% 0, 100% 100%, 0 100%); }
-  .hero__stage { justify-self: center; align-self: center; }
+@media (min-width: 861px) {
+  .hero__stage { --D: clamp(420px, 45vw, 720px); margin-right: -6vw; }
 }
+.hero__disc { background: linear-gradient(150deg, #4a4f56 0%, #202327 50%, #0d0e10 100%); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.6); }
+.hero__ring { border-color: rgba(21, 23, 26, 0.22); }
+.hero__ring--b { border-color: rgba(21, 23, 26, 0.1); }
