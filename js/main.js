@@ -64,57 +64,47 @@
 
   /* ---------- hero ---------- */
 
-  // Decorative loop that connects four words around the portrait: business -> process -> data -> technology.
-  function flowGraphic(words) {
-    var path = "M88 56 H432 A28 28 0 0 1 460 84 V476 A28 28 0 0 1 432 504 H88 A28 28 0 0 1 60 476 V84 A28 28 0 0 1 88 56 Z";
-    var corners = [[60, 56], [460, 56], [460, 504], [60, 504]];
-    var arrows = [[260, 56, 0], [460, 280, 90], [260, 504, 180], [60, 280, 270]];
-    var svg = s("svg", { class: "flow", viewBox: "0 0 520 560", "aria-hidden": "true", focusable: "false" });
-    svg.appendChild(s("path", { class: "flow__loop-base", d: path, fill: "none" }));
-    svg.appendChild(s("path", { class: "flow__loop", d: path, fill: "none", pathLength: "1" }));
-    arrows.forEach(function (a) {
-      svg.appendChild(s("path", { class: "flow__arrow", d: "M-6 -6 L6 0 L-6 6 Z", transform: "translate(" + a[0] + " " + a[1] + ") rotate(" + a[2] + ")" }));
-    });
-    (words || []).slice(0, 4).forEach(function (w, i) {
-      var c = corners[i];
-      var g = s("g", { class: "flow__node", style: "--i:" + i });
-      g.appendChild(s("rect", { x: c[0] - 56, y: c[1] - 19, width: 112, height: 38, rx: 10 }));
-      var t = s("text", { x: c[0], y: c[1] + 5, "text-anchor": "middle" });
-      t.textContent = w;
-      g.appendChild(t);
-      svg.appendChild(g);
-    });
-    return svg;
-  }
-
-  function portrait(hero) {
+  function heroStage(hero) {
     var src = safeUrl(hero.photo);
+    var inner;
     if (src) {
-      return h("div", { class: "portrait" },
-        h("img", { src: src, alt: hero.photoAlt || "", width: "640", height: "736", decoding: "async", fetchpriority: "high" }));
+      inner = h("div", { class: "hero__clip" },
+        h("img", { class: "hero__person", src: src, alt: hero.photoAlt || "", width: "1086", height: "1048", decoding: "async", fetchpriority: "high" }));
+    } else {
+      // Placeholder shown until you set hero.photo in content.js
+      var glyph = s("svg", { viewBox: "0 0 120 140", "aria-hidden": "true", focusable: "false" },
+        s("circle", { cx: 60, cy: 52, r: 24 }),
+        s("path", { d: "M14 140c0-30 20-50 46-50s46 20 46 50z" }));
+      inner = h("div", { class: "hero__placeholder", role: "img", "aria-label": "Photo placeholder. Add your portrait in data/content.js." },
+        glyph, h("span", { "aria-hidden": "true", text: "Your photo here" }));
     }
-    // Placeholder shown until you set hero.photo in content.js
-    var glyph = s("svg", { viewBox: "0 0 120 140", "aria-hidden": "true", focusable: "false" },
-      s("circle", { cx: 60, cy: 52, r: 24 }),
-      s("path", { d: "M14 140c0-30 20-50 46-50s46 20 46 50z" }));
-    return h("div", { class: "portrait portrait--placeholder", role: "img", "aria-label": "Photo placeholder. Add your portrait in data/content.js." },
-      glyph, h("span", { class: "portrait__hint", "aria-hidden": "true", text: "Your photo here" }));
+    return h("div", { class: "hero__stage" },
+      h("div", { class: "hero__ring hero__ring--b", "aria-hidden": "true" }),
+      h("div", { class: "hero__ring hero__ring--a", "aria-hidden": "true" }),
+      h("div", { class: "hero__disc", "aria-hidden": "true" }),
+      inner);
   }
 
   function renderHero() {
     var d = S.hero, a = d.primaryButton, b = d.secondaryButton;
-    mount("home", h("div", { class: "container hero__grid" },
-      h("div", { class: "hero__copy" },
-        h("p", { class: "eyebrow", text: d.eyebrow }),
-        h("h1", { class: "hero__title", id: "hero-title", text: d.title }),
-        d.text ? h("p", { class: "hero__text", text: d.text }) : null,
-        h("div", { class: "hero__actions" },
-          a && safeUrl(a.href) ? h("a", { class: "button button--light", href: safeUrl(a.href), text: a.label }) : null,
-          b && safeUrl(b.href) ? h("a", { class: "button button--outline", href: safeUrl(b.href), text: b.label }) : null),
-        d.tags && d.tags.length ? tags(d.tags, "tag-list--dark") : null
-      ),
-      h("div", { class: "hero__visual" }, flowGraphic(d.flow), portrait(d))
-    ));
+    // the name is split after the first word so it sits on two lines
+    var words = String(d.title || S.name || "").split(" ");
+    var first = words.shift(), rest = words.join(" ");
+    var flow = (d.flow || []).slice(0, 4);
+    mount("home", [
+      h("div", { class: "hero__pattern", "aria-hidden": "true" }),
+      flow.length ? h("ol", { class: "hero__dots", "aria-label": flow.join(", ") }, flow.map(function (w) { return h("li", { text: w }); })) : null,
+      h("div", { class: "container hero__grid" },
+        h("div", { class: "hero__copy" },
+          h("p", { class: "eyebrow", text: d.eyebrow }),
+          h("h1", { class: "hero__title", id: "hero-title" }, first, rest ? h("span", { text: rest }) : null),
+          d.text ? h("p", { class: "hero__text", text: d.text }) : null,
+          h("div", { class: "hero__actions" },
+            a && safeUrl(a.href) ? h("a", { class: "button button--light", href: safeUrl(a.href), text: a.label }) : null,
+            b && safeUrl(b.href) ? h("a", { class: "button button--outline", href: safeUrl(b.href), text: b.label }) : null),
+          d.tags && d.tags.length ? tags(d.tags, "tag-list--dark") : null),
+        heroStage(d))
+    ]);
   }
 
   /* ---------- about ---------- */

@@ -19,16 +19,16 @@ window.SITE = {
   /* ---------- Hero ---------- */
   hero: {
     eyebrow: "INFORMATION SYSTEMS UNDERGRADUATE",
-    title: "Bridging Business & Technology.",
+    title: "William Kurniawan Tan", // shown big; split after the first word
     text: "", // optional extra line under the title; "" keeps the hero clean
     primaryButton: { label: "Explore My Work", href: "#projects" },
     secondaryButton: { label: "Let’s Connect", href: "#contact" },
     tags: [], // optional chips under the buttons; empty list hides them
     // Put your photo in assets/img/ and write its path here, e.g. "assets/img/william.jpg".
-    // Use a portrait photo (about 4:5). Leave "" to show the placeholder.
-    photo: "assets/img/william.webp",
+    // Use a transparent-background cut-out (PNG/WebP) of you, waist up. Leave "" to show the placeholder.
+    photo: "assets/img/william-cutout.webp",
     photoAlt: "Portrait of William Kurniawan Tan",
-    // The four words on the connected-flow graphic next to your photo.
+    // The four dots shown at the top of the hero.
     flow: ["Business", "Process", "Data", "Technology"],
   },
 
